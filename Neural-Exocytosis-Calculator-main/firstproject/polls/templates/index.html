@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>NewsLatter</title>
+	<style>
+		label {
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+
+{% if request.method == 'GET' %}
+	<form action="" method="POST">
+		{% csrf_token %}
+		<label for="timestamp">
+			Enter timestep as an integer that is represented in microseconds, can be random since diffusion travel in this instatiation is random - this is for Standard Deviation
+		</label>
+		<img src="/static/images/filename.png">
+		<input type="text" id="timestamp" name="timestamp" />
+		<br> <br>
+
+		<label for="D">
+			Enter D the diffusion coefficient of Neurotransmitter, take for example: glutamate - this is for Standard Deviation:
+		</label>
+		<input type="text" id="D" name="D" />
+		<br> <br>
+
+		<label for="x/z-score">
+			Enter zscore =>  how many standard deviations away you are from mean
+		</label>
+		<input type="text" id="x/z-score" name="x/z-score" />
+
+
+		<br> <br>
+		<button type="submit">Submit</button>
+	</form>
+{% endif %}
+
+{% if request.method == 'POST' %}
+	Answer: {{answer}}
+	<br><br>
+	macroscopicRateConstant: {{macroscopicRateConstant}}
+	<br><br>
+	<img src="{{dataurl}}">
+	<br><br>
+	<a href="/test">Restart</a>
+{% endif %}
+
+</body>
+</html>
